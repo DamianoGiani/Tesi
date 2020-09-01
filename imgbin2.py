@@ -47,7 +47,7 @@ print(my_list2)
 """
 with open('your_file14bit.txt', 'w') as f: 
     for item in my_list2:
-        f.write("%s\n" % item) #usare questo se per creare file testo con file di 14 bit
+        f.write("%s\n" % item) #usare questo per creare file testo con i 14 bit relativi al valore
 """
 """
 with open('your_file14bitfi.txt', 'w') as f:
@@ -71,5 +71,5 @@ for index in range(int(len(bin_str)/8)):
 
 with open('asciiimagedaniele.bin', 'w') as f:
     for item in my_list3:
-        f.write("%s" % item)
+        f.write("%s" % item)  #crea file bin con i valori ascii
 
