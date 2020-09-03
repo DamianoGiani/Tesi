@@ -1,4 +1,4 @@
-from PIL import Image
+
 import numpy as np
 array=[]
 
@@ -9,7 +9,7 @@ with open("temp.bin", "rb") as f:
         byte = f.read(1)
 #print(array)
 list=[]
-for x in range(0, 5000):
+for x in range(0, len(array)):
     k = np.frombuffer(array[x], dtype=np.uint8)
     list.append(np.unpackbits(k).reshape(8))
 list = np.array(list)
@@ -28,36 +28,8 @@ for x in range(0,len(pixel)):
     rgbarray.append(int(round((i/16383)*255)))
 rgbarray=np.array(rgbarray)
 print(rgbarray)
-"""
-a = np.array(rgbarray, dtype=np.uint8)
 
-# Use PIL to create an image from the new array of pixels
-new_image = Image.fromarray(a)
-new_image.show()
-"""
-"""
-i=(pixel[0].dot(2**np.arange(14)[::-1]))
-print(i)
-i=int(round((i/16383)*255))
-print(i)
-"""
-#list=list.tolist()
-
-"""
-'''
-def access_bit(data, num):
-    base = int(num // 8)
-    shift = int(num % 8)
-    return (data[base] & (1<<shift)) >> shift
-
-x=[access_bit(array,i) for i in range(len(array)*8)]
-print(x)'''
-#x=[access_bit(array,i) for i in range(len(array)*8)]
-
-#firstfivebits = byte >> 2
-"""
-"""
-while byte:
-    print(byte)
-    byte = file.read(1)
-file.close()"""
+with open('rgb.txt','w') as f:
+    for item in rgbarray:
+        f.write("%s "% item)
+my_rgb=[[[]]]
