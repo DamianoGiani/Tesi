@@ -1,4 +1,4 @@
-
+from PIL import Image
 import numpy as np
 array=[]
 
@@ -9,7 +9,7 @@ with open("temp.bin", "rb") as f:
         byte = f.read(1)
 #print(array)
 list=[]
-for x in range(0, 14):
+for x in range(0, 5000):
     k = np.frombuffer(array[x], dtype=np.uint8)
     list.append(np.unpackbits(k).reshape(8))
 list = np.array(list)
@@ -21,13 +21,20 @@ for x in range(0,int(len(my_list)/14)):
     pixel.append(my_list[x* 14: x*14 + 14])
 
 pixel=np.array(pixel)
-print(pixel[0])
+
 rgbarray=[]
 for x in range(0,len(pixel)):
     i = (pixel[x].dot(2 ** np.arange(14)[::-1]))
     rgbarray.append(int(round((i/16383)*255)))
 rgbarray=np.array(rgbarray)
 print(rgbarray)
+"""
+a = np.array(rgbarray, dtype=np.uint8)
+
+# Use PIL to create an image from the new array of pixels
+new_image = Image.fromarray(a)
+new_image.show()
+"""
 """
 i=(pixel[0].dot(2**np.arange(14)[::-1]))
 print(i)
