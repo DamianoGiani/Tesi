@@ -34,7 +34,7 @@ rgbarray=np.array(rgbarray)
 distance = [[[0 for k in range(3)] for j in range(5280)] for i in range(3529)] #creo array di 0
 
 distance=np.array(distance)
-B = np.reshape(rgbarray, (-1, 5280))
+B = np.reshape(rgbarray, (-1, 5280))    #trasformo rgbarray in un array 2D per capire quando andare alla riga sotto
 print(B)
 arrayred=[]
 arraygreen=[]
@@ -49,7 +49,7 @@ for index in range(0,B.shape[0],2):
         arraygreen.append(B[index][x])
     for x in range(1, B.shape[1], 2):
         if (index+1)!=3529:
-            arraygreen.append(B[index+1][x-1]) #creo array con tutti i valori del Verdi
+            arraygreen.append(B[index+1][x-1]) #creo array con tutti i valori del Verde
 
 arraygreen=np.array(arraygreen)
 
