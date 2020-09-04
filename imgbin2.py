@@ -44,32 +44,27 @@ for x in range(0, l):
     c=b.zfill(14) #porto tutti gli elementi a 14 bit
     my_list2.append(c)
 print(my_list2)
-"""
-with open('your_file14bit.txt', 'w') as f: 
-    for item in my_list2:
-        f.write("%s\n" % item) #usare questo per creare file testo con i 14 bit relativi al valore
-"""
-"""
-with open('your_file14bitfi.txt', 'w') as f:
-    for item in my_list2:
-        f.write("%s" % item) #crea file.txt con tutti i bit in fila
-"""
-
-with open('binimage.bin', 'w') as f:
-    for item in my_list2:
-        f.write("%s" % item) #crea file bin
 
 my_list3=[]
 bin_str = "".join(my_list2)
 print(bin_str)
 
+def bitstring_to_bytes(s):  #stringhe di bit in byte
+    v = int(s, 2)
+    b = bytearray()
+    while v:
+        b.append(v & 0xff)
+        v >>= 8
+    return bytes(b[::-1])
+
+barray=[]
+
 for index in range(int(len(bin_str)/8)):
     substring = bin_str[index * 8: index*8 + 8]
-    byteval = int(substring, base=2)
-    print(chr(byteval))
-    my_list3.append(chr(byteval))
+    barray.append(bitstring_to_bytes(substring))
+bytearray=np.array(barray)
 
-with open('asciiimagedaniele.bin', 'w') as f:
-    for item in my_list3:
-        f.write("%s" % item)  #crea file bin con i valori ascii
+with open('image.bin', 'w') as f:
+    for item in barray:
+        f.write("%s" % item)  #crea file bin con i valori trasformati in byte
 
